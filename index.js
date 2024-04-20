@@ -17,19 +17,9 @@ const port = process.env.PORT || 5000;
 app.use(cors())
 app.use(express.json())
 
-const db=async()=>{
-  const MONGO_URL=procss.env.MONGO_URL
-  try{
-  await   mongoose.connect(`${MONGO_URL}`)
-   console.log( `connected to ${mongoose.connection.host}`)
- }
- catch(error){
- console.log("Error in connecting to database",error);
- }
 
-}
 
-db();
+
 
 
 
@@ -72,6 +62,8 @@ app.get('/blogs/:id', (req, res) => {
   // console.log(blog)
   res.send(blog)
 })
+
+dbconect();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

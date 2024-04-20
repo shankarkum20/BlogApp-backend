@@ -18,9 +18,9 @@ app.use(cors())
 app.use(express.json())
 
 const db=async()=>{
-
+  const MONGO_URL=procss.env.MONGO_URL
   try{
-  await   mongoose.connect(`${process.env.MONGO_URL}`)
+  await   mongoose.connect(`${MONGO_URL}`)
    console.log( `connected to ${mongoose.connection.host}`)
  }
  catch(error){

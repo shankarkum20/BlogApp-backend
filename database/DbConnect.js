@@ -3,9 +3,14 @@ const dotenv =require('dotenv')
 
 dotenv.config()
 
+const MONGO_URL =process.env.MONGO_URL
+
+
+
+
 const dbconect=async()=>{
     try{
-        await mongoose.connect(`${process.env.MONGO_URL}`)
+        await mongoose.connect(`${MONGO_URL}`)
         console.log( `connected to ${mongoose.connection.host}`)
     }
 catch(error){

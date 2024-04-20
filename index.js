@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const dbconect = require('./database/DbConnect');
 const path =require("path");
 const multer =require("multer")
+const mongoose =require("mongoose")
 
 dotenv.config()
 
@@ -17,13 +18,21 @@ const MONGO_URL =process.env.MONGO_URL
 app.use(cors())
 app.use(express.json())
 
-try{
-  await mongoose.connect(`${MONGO_URL}`)
-  console.log( `connected to ${mongoose.connection.host}`)
+const db=async()=>{
+
+  try{
+  await   mongoose.connect(`${MONGO_URL}`)
+   console.log( `connected to ${mongoose.connection.host}`)
+ }
+ catch(error){
+ console.log("Error in connecting to database",error);
+ }
+
 }
-catch(error){
-console.log("Error in connecting to database",error);
-}
+
+db();
+
+
 
 //image storage engine
 const storage =multer.diskStorage({

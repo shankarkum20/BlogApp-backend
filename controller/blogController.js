@@ -2,7 +2,7 @@ const blogmodel = require('../model/blogmodel');
 const blog =require('../model/blogmodel') 
 
 const addblog=async(req,res)=>{
-    const {Title,Category,Publish_Date,Reading_Time,Tag,Content,Blogimage,Author,Email}=req.body;
+    const {Title,Category,Reading_Time,Tag,Content,Blogimage,Author,Email}=req.body;
      
     if(!Title || !Category  || !Reading_Time || !Tag  || !Content || !Blogimage || !Author || ! Email ){
         return res.status(400).json({

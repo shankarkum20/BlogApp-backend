@@ -11,11 +11,19 @@ dotenv.config()
 
 const port = process.env.PORT || 5000;
 
-dbconect();
+const MONGO_URL =process.env.MONGO_URL
 
 // middleware
 app.use(cors())
 app.use(express.json())
+
+try{
+  await mongoose.connect(`${MONGO_URL}`)
+  console.log( `connected to ${mongoose.connection.host}`)
+}
+catch(error){
+console.log("Error in connecting to database",error);
+}
 
 //image storage engine
 const storage =multer.diskStorage({
